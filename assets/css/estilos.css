@@ -1,0 +1,64 @@
+ @font-face {
+    font-family: "Panton-Bold";
+    src: url("../fonts/Panton-Bold.otf") format("opentype");
+}
+@font-face {
+    font-family: "Panton-Black";
+    src: url("../fonts/Panton-Black.otf") format("opentype");
+}
+@font-face {
+    font-family: "Panton-Regular";
+    src: url("../fonts/Panton-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Panton-ExtraBold";
+    src: url("../fonts/Panton-ExtraBold.otf") format("opentype");
+}
+
+body{
+    font-family: "Panton-Regular";
+}
+
+input[type=text], input[type=password] {
+    transition: all 0.6s ease;
+    font-family: "Panton-Regular"
+}
+
+.buscador{
+    color: white!important;
+    font-family: Panton-Bold;
+}
+
+/*JQGRID*/
+.ui-jqgrid .ui-pager-control .ui-pager-table td{
+    border-top: 1px solid #dee2e6 !important;
+    border: none !important;
+}
+#input_jqGridPager .ui-pg-input {
+    width:50px !important;
+}
+
+.ui-jqgrid .ui-pg-selbox{
+    border: 1px solid #dee2e6 !important;
+    width: 65px;
+    height: 22px;
+}
+
+.ui-pg-table .ui-common-table .ui-paging-pager{
+    height: 25px !important;
+}
+#jqGridPager_left{
+    width:10% !important;
+}
+#jqGridPager_center{
+    width:70% !important;
+}
+#jqGridPager_right{
+    width:20% !important;
+}
+/*END JQGRID*/
+
+/*CHOSEN*/
+
+  /*FIN CHOSEN*/
