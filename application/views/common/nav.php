@@ -47,7 +47,7 @@
          <?php if($idPerfil==1){?>
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarConfig" aria-expanded="false" aria-controls="sidebarConfig"
-                class="side-nav-link <?=(in_array($menu,array("usuario","perfil","estatus"))) ? "lol2": ""?>">
+                class="side-nav-link <?=(in_array($menu,array("usuario","perfil","estatus","asociacion","disciplina","modalidad"))) ? "lol2": ""?>">
                 <i class="bi bi-gear"></i>
                 <span> Configuración</span>
             </a>
@@ -71,10 +71,64 @@
                         <i class="bi bi-card-list"></i>
                         <span class="btn-label">Estatus</span></a>
                     </li>
+									<li>
+                        <a href="asociacion"
+                        class="side-nav-link <?=(isset($menu) && $menu == "asociacion") ? "lol": ""?>">
+                        <i class="bi bi-card-list"></i>
+                        <span class="btn-label">Asociación</span></a>
+                    </li>
+
+                    <li>
+                        <a href="disciplina"
+                        class="side-nav-link <?=(isset($menu) && $menu == "disciplina") ? "lol": ""?>">
+                        <i class="bi bi-card-list"></i>
+                        <span class="btn-label">Disciplina</span></a>
+                    </li>
+
+                    <li>
+                        <a href="modalidad"
+                        class="side-nav-link <?=(isset($menu) && $menu == "modalidad") ? "lol": ""?>">
+                        <i class="bi bi-card-list"></i>
+                        <span class="btn-label">Modalidad</span></a>
+                    </li>		
                 </ul>
             </div>
         </li>
     <?php }?>
+							
+		<?php if($idPerfil==1){?>
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarConfig" aria-expanded="false" aria-controls="sidebarConfig"
+                class="side-nav-link <?=(in_array($menu,array("atleta","entrenador","fomento"))) ? "lol3": ""?>">
+                <i class="bi bi-gear"></i>
+                <span>Modalidad</span>
+            </a>
+            <div class="collapse" id="sidebarConfig" >
+                <ul class="side-nav">
+                    <li>
+                        <a href="atleta"
+                        class="side-nav-link <?=(isset($menu) && $menu == "atleta") ? "lol": ""?>">
+                        <i class="bi bi-file-lock"></i>
+                        <span class="btn-label">Deportista</span></a>
+                    </li>
+                    <li>
+                        <a href="entrenador"
+                        class="side-nav-link <?=(isset($menu) && $menu == "entrenador") ? "lol": ""?>">
+                        <i class="bi bi-people"></i>
+                        <span class="btn-label">Entrenador</span></a>
+                    </li>
+                    <li>
+                        <a href="fomento"
+                        class="side-nav-link <?=(isset($menu) && $menu == "fomento") ? "lol": ""?>">
+                        <i class="bi bi-card-list"></i>
+                        <span class="btn-label">Fomento</span></a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+    <?php }?>
+							
     <li class="side-nav-item">
         <a  class="side-nav-link" href="salir">
             <i class="bi bi-box-arrow-left"></i>
