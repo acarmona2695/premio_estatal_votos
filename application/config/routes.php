@@ -77,6 +77,43 @@ $route['ajax/listadoEstatus'] = 'EstatusController/listEstatus';
 $route['ajax/guardarEstatus'] = 'EstatusController/guardarEstatus';
 $route['ajax/cargarFormularioEstatus'] = 'EstatusController/loadFormulario';
 
+#ASOCIACIONES
+$route['asociacion'] = 'AsociacionController';
+$route['ajax/listadoAsociacion'] = 'AsociacionController/listAsociacion';
+$route['ajax/guardarAsociacion'] = 'AsociacionController/guardarAsociacion';
+$route['ajax/cargarFormularioAsociacion'] = 'AsociacionController/loadFormulario';
+
+#DISCIPLINA
+$route['disciplina'] = 'DisciplinaController';
+$route['ajax/listadoDisciplina'] = 'DisciplinaController/listDisciplina';
+$route['ajax/guardarDisciplina'] = 'DisciplinaController/guardarDisciplina';
+$route['ajax/cargarFormularioDisciplina'] = 'DisciplinaController/loadFormulario';
+
+#MODALIDAD
+$route['modalidad'] = 'ModalidadController';
+$route['ajax/listadoModalidad'] = 'ModalidadController/listModalidad';
+$route['ajax/guardarModalidad'] = 'ModalidadController/guardarModalidad';
+$route['ajax/cargarFormularioModalidad'] = 'ModalidadController/loadFormulario';
+
+#ATLETA
+$route['atleta'] = 'AtletaController';
+$route['ajax/listadoAtleta'] = 'AtletaController/listAtleta';
+$route['ajax/guardarAtleta'] = 'AtletaController/guardarAtleta';
+$route['ajax/cargarFormularioAtleta'] = 'AtletaController/loadFormulario';
+
+#ENTRENADOR
+$route['entrenador'] = 'EntrenadorController';
+$route['ajax/listadoEntrenador'] = 'EntrenadorController/listEntrenador';
+$route['ajax/guardarEntrenador'] = 'EntrenadorController/guardarEntrenador';
+$route['ajax/cargarFormularioEntrenador'] = 'EntrenadorController/loadFormulario';
+
+#FOMENTO
+$route['fomento'] = 'FomentoController';
+$route['ajax/listadoFomento'] = 'FomentoController/listFomento';
+$route['ajax/guardarFomento'] = 'FomentoController/guardarFomento';
+$route['ajax/cargarFormularioFomento'] = 'FomentoController/loadFormulario';
+
+
 #CONTRASEÑA
 $route['contrasena'] = 'login/vistaContrasena';
 $route['ajax/guardarContrasena'] = 'login/guardarContrasena';
