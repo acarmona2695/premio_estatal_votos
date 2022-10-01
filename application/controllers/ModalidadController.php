@@ -50,6 +50,7 @@ class ModalidadController extends My_Controller {
 			$response->rows[$i]['cell'] = array('pk_modalidad' => $row['pk_modalidad'],
 				"btnEditar" => '<button type="button" class="btn btn-labeled btn-primary btn-sm btnEditar" data-bs-toggle="modal" data-bs-target="#modalInventario" data-id="'.$row['pk_modalidad'].'"><span class="btn-label"><i class="bi bi-pencil"></i></span>  Editar</button>',
 				"descripcion" => $row['descripcion'],
+				"estatus" => $row['estatus'],
 			);
 			$i++;
 		}
@@ -63,12 +64,17 @@ class ModalidadController extends My_Controller {
 		if(trim($descripcion) == ""){
 			echo json_encode(array("error" => true,"msg" => 'El campo Modalidad es obligatorio'));die();
 		}
+		$estatus = $this->input->post('estatus');
+		if(trim($estatus) == ""){
+			echo json_encode(array("error" => true,"msg" => 'El campo Estatus es obligatorio'));die();
+		}
 		$res = $this->ModalidadModel->ModalidadGuardar($_POST);
 		echo json_encode($res);die();
 	}
 	public function loadFormulario(){
 		$data['pk_modalidad'] = $this->input->post('pk_modalidad');
 		$data['INFO']['descripcion'] = '';
+		$data['INFO']['estatus'] = '';
 		if(intval($data['pk_modalidad']) > 0){//Editar
 			$data['INFO'] = $this->ModalidadModel->obtenerRegistroPorId($data['pk_modalidad']);
 		}

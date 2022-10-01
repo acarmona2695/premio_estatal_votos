@@ -7,7 +7,12 @@ class AsociacionModel extends CI_Model {
     public function asociacionModelo($filtros){
         set_time_limit(0);
         ini_set('memory_limit', '-1');
-        $this->db->select("pk_asociacion,descripcion,estatus");
+        $this->db->select("pk_asociacion,descripcion,CASE
+                                WHEN estatus = 0 THEN
+                                    'Inactivo'
+                                ELSE
+                                    'Activo'
+                            END AS estatus");
         $this->db->from("cat_asociacion");
         if(isset($filtros['sidx'])){
             $this->db->order_by($filtros['sidx'] ,$filtros['sord']);

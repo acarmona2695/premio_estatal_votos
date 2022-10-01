@@ -59,7 +59,11 @@
       <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
         <div class="card-body">
           <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-4">
+            <div class="col-sm-6 col-md-6 col-lg-3">
+              <label for="nombref">Nombre</label>
+              <input type="text" class="form-control inputFilter" name="nombref" id="nombref" autocomplete="off">
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
               <label for="perfilf">Asociación</label>
               <select class="form-select chosen-select" aria-label="asociacionf" name="asociacionf" id="asociacionf">
                 <option value="">Seleccionar asociación...</option>
@@ -70,10 +74,7 @@
                 }?>
               </select>
             </div>
-            <div class="col-sm-6 col-md-6 col-lg-4">
-              <label for="nombref">Nombre</label>
-              <input type="text" class="form-control inputFilter" name="nombref" id="nombref" autocomplete="off">
-            </div>
+            
             <div class="col-sm-6 col-md-6 col-lg-3">
               <label for="estatusf">Modalidad</label>
               <select class="form-select chosen-select" aria-label="modalidadf" name="modalidadf" id="modalidadf">
@@ -118,16 +119,16 @@ $("#grid").jqGrid({
     modalidad : function(){ return ($.trim($('#modalidadf').val()) != "") ? $.trim($('#modalidadf').val()) : "";},
   },
   datatype: 'json',mtype: 'POST',height:'350px', styleUI : 'Bootstrap5',iconSet:  'Bootstrap5',
-  colNames:['Editar','Nombre','Asociación','Modalidad','Juez','Fecha<br> creación','Fecha<br> modificación','Estatus'],
+  colNames:['Editar','Nombre','Asociación','Modalidad','Fecha<br> creación','Fecha<br> modificación','Usuario','Estatus'],
   colModel:[
   {name:'btnEditar',index:'btnEditar',width:'90px',resizable:false,sortable:false,align:'center',title:false},
-  {name:'nombre_nominado',index:'nombre_nominado',width:'270px',resizable:false,sortable:true,align:'center',title:false},
-  {name:'asociacion',index:'asociacion',width:'220px',resizable:false,sortable:true,align:'center',title:false},
-  {name:'modalidad',index:'modalidad',width:'135px',resizable:false,sortable:true,align:'center',title:false},
-  {name:'fk_usuario',index:'fk_usuario',width:'270px',resizable:false,sortable:true,align:'center',title:false},
-  {name:'fecha_creacion',index:'fecha_creacion',width:'95px',resizable:false,sortable:true,align:'center',title:false},
-  {name:'fecha_modificacion',index:'fecha_modificacion',width:'120px',resizable:false,sortable:true,align:'center',title:false},
-  {name:'estatus',index:'estatus',width:'120px',resizable:false,sortable:true,align:'center',title:false},
+  {name:'nombre_nominado',index:'nombre_nominado',width:'220px',resizable:false,sortable:true,align:'left',title:false},
+  {name:'asociacion',index:'asociacion',width:'220px',resizable:false,sortable:true,align:'left',title:false},
+  {name:'modalidad',index:'modalidad',width:'135px',resizable:false,sortable:true,align:'left',title:false},
+  {name:'fecha_creacion',index:'fecha_creacion',width:'95px',resizable:false,sortable:true,align:'left',title:false},
+  {name:'fecha_modificacion',index:'fecha_modificacion',width:'120px',resizable:false,sortable:true,align:'left',title:false},
+  {name:'nombre_usuario',index:'nombre_usuario',width:'120px',resizable:false,sortable:true,align:'left',title:false},
+  {name:'estatus',index:'estatus',width:'80px',resizable:false,sortable:true,align:'left',title:false},
   ],
   loadComplete: function(data) {
     try {

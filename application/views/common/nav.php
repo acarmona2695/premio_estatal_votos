@@ -40,11 +40,49 @@
               <li class="side-nav-item">
                 <a class="side-nav-link <?=(isset($menu) && $menu == "inicio") ? "lol": ""?>"
                  href="inicio">
-                <i class="bi bi-file-earmark-check"></i>
+                <i class="bi bi-house"></i>
                 <span class="btn-label">Inicio</span>
                 </a>
               </li>
-         <?php if($idPerfil==1){?>
+            <ul class="side-nav">
+                 <?php if($idPerfil!=3){?>
+              <li class="side-nav-item">
+                <a class="side-nav-link <?=(isset($menu) && $menu == "asociacion") ? "lol": ""?>"
+                 href="asociacion">
+                <i class="bi bi-briefcase"></i>
+                <span class="btn-label">Asociación</span>
+                </a>
+              </li>
+
+             <ul class="side-nav">
+              <li class="side-nav-item">
+                <a class="side-nav-link <?=(isset($menu) && $menu == "modalidad") ? "lol": ""?>"
+                 href="modalidad">
+                <i class="bi bi-card-checklist"></i>
+                <span class="btn-label">Modalidad</span>
+                </a>
+              </li>
+
+              <ul class="side-nav">
+              <li class="side-nav-item">
+                <a class="side-nav-link <?=(isset($menu) && $menu == "nominado") ? "lol2": ""?>"
+                 href="nominado">
+                <i class="bi bi-person-lines-fill"></i>
+                <span class="btn-label">Nominados</span>
+                </a>
+              </li>
+                <?php }?>
+
+              <ul class="side-nav">
+              <li class="side-nav-item">
+                <a class="side-nav-link <?=(isset($menu) && $menu == "voto") ? "lol": ""?>"
+                 href="voto">
+                <i class="bi bi-check2-circle"></i>
+                <span class="btn-label">Voto</span>
+                </a>
+              </li>
+
+               <?php if($idPerfil==1){?>
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarConfig" aria-expanded="false" aria-controls="sidebarConfig"
                 class="side-nav-link <?=(in_array($menu,array("usuario","perfil","estatus"))) ? "lol2": ""?>">
@@ -75,42 +113,6 @@
             </div>
         </li>
     <?php }?>
-
-            <ul class="side-nav">
-              <li class="side-nav-item">
-                <a class="side-nav-link <?=(isset($menu) && $menu == "asociacion") ? "lol": ""?>"
-                 href="asociacion">
-                <i class="bi bi-card-checklist"></i>
-                <span class="btn-label">Asociación</span>
-                </a>
-              </li>
-
-             <ul class="side-nav">
-              <li class="side-nav-item">
-                <a class="side-nav-link <?=(isset($menu) && $menu == "modalidad") ? "lol": ""?>"
-                 href="modalidad">
-                <i class="bi bi-card-checklist"></i>
-                <span class="btn-label">Modalidad</span>
-                </a>
-              </li>
-
-              <ul class="side-nav">
-              <li class="side-nav-item">
-                <a class="side-nav-link <?=(isset($menu) && $menu == "nominado") ? "lol2": ""?>"
-                 href="nominado">
-                <i class="bi bi-person-lines-fill"></i>
-                <span class="btn-label">Nominados</span>
-                </a>
-              </li>
-
-              <ul class="side-nav">
-              <li class="side-nav-item">
-                <a class="side-nav-link <?=(isset($menu) && $menu == "voto") ? "lol": ""?>"
-                 href="voto">
-                <i class="bi bi-archive"></i>
-                <span class="btn-label">Voto</span>
-                </a>
-              </li>
 
 
     <li class="side-nav-item">

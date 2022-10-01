@@ -7,7 +7,12 @@ class ModalidadModel extends CI_Model {
     public function modalidadModelo($filtros){
         set_time_limit(0);
         ini_set('memory_limit', '-1');
-        $this->db->select("pk_modalidad,descripcion");
+        $this->db->select("pk_modalidad,descripcion,CASE
+                                WHEN estatus = 0 THEN
+                                    'Inactivo'
+                                ELSE
+                                    'Activo'
+                            END AS estatus");
         $this->db->from("cat_modalidad");
         if(isset($filtros['sidx'])){
             $this->db->order_by($filtros['sidx'] ,$filtros['sord']);
@@ -47,7 +52,7 @@ class ModalidadModel extends CI_Model {
         }
     }
     public function obtenerRegistroPorId($id){
-        $this->db->select("pk_modalidad, descripcion");
+        $this->db->select("pk_modalidad, descripcion,estatus");
         $this->db->from("cat_modalidad");
         $this->db->where("pk_modalidad",$id);
         $query = $this->db->get();

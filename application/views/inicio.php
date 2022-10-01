@@ -12,10 +12,10 @@
 </style>
 <main class="col-md-12 ms-sm-auto col-lg-12 px-md-12">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Inicio</h1>
+    <h1 class="h2">Votación premio estatal <?php echo date('Y');?> </h1>
 
   </div>
-  <h1>Hola soy el inicio</h1>
+  <h1>Aqui iran las categorias</h1>
   <br>
  </main>
 <?php include('common/footer.php');?>

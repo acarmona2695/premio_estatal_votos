@@ -61,10 +61,11 @@ class NominadoController extends MY_Controller {
 				"btnEditar" => '<button type="button" class="btn btn-labeled btn-primary btn-sm btnEditar" data-bs-toggle="modal" data-bs-target="#modalInventario" data-id="'.$row['pk_nominado'].'"><span class="btn-label"><i class="bi bi-pencil"></i></span>  Editar</button>',
 				"asociacion" => $row['asociacion'],
 				"nombre_nominado" => $row['nombre_nominado'],
-				//"fk_usuario" => $row['fk_usuario'],
+				"nombre_usuario" => $row['nombre_usuario'],
 				"fecha_creacion" => $row['fecha_creacion'],
 				"fecha_modificacion" => $row['fecha_modificacion'],
 				"modalidad" => $row['modalidad'],
+				"estatus" => $row['estatus'],
 			);
 			$i++;
 		}
@@ -74,19 +75,21 @@ class NominadoController extends MY_Controller {
 		if(!$this->session->userdata('pb_idUsuario')){
 			echo json_encode(array("error" => true,"msg" => 'Favor de actualizar la página, su sesión finzalizó.'));die();
 		}
-		$fk_asociacion = $this->input->post('fk_asociacion');
-		if(trim($fk_asociacion) == ""){
-			echo json_encode(array("error" => true,"msg" => 'El campo Perfil es obligatorio'));die();
-		}
-
 		$nombre_nominado = $this->input->post('nombre_nominado');
 		if(trim($nombre_nominado) == ""){
 			echo json_encode(array("error" => true,"msg" => 'El campo Nombre es obligatorio'));die();
 		}
-		
+		$fk_asociacion = $this->input->post('fk_asociacion');
+		if(trim($fk_asociacion) == ""){
+			echo json_encode(array("error" => true,"msg" => 'El campo Asociación es obligatorio'));die();
+		}
 		$fk_modalidad = $this->input->post('fk_modalidad');
 		if(trim($fk_modalidad) == ""){
 			echo json_encode(array("error" => true,"msg" => 'El campo Modalidad es obligatorio'));die();
+		}
+		$estatus = $this->input->post('estatus');
+		if(trim($estatus) == ""){
+			echo json_encode(array("error" => true,"msg" => 'El campo Estatus es obligatorio'));die();
 		}
 		
 		$res = $this->NominadoModel->NominadoGuardar($_POST);
@@ -95,8 +98,7 @@ class NominadoController extends MY_Controller {
 	public function loadFormulario(){
 		$data['pk_nominado'] = $this->input->post('pk_nominado');
 		$data['INFO']['nombre_nominado'] = '';
-		//$data['INFO']['fk_usuario'] = '';
-		//$data['INFO']['estatus'] = '';
+		$data['INFO']['estatus'] = '';
 		$data['INFO']['fk_asociacion'] = '';
 		$data['INFO']['fk_modalidad'] = '';
 		if(intval($data['pk_nominado']) > 0){//Editar

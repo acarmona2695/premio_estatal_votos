@@ -147,7 +147,7 @@ class UsuarioController extends MY_Controller {
 		}else{
 			$_POST['contrasena_usuario'] = sha1(trim($contrasena_usuario));
 		}
-		$correo = $this->input->post('correo_usuario');
+		/*$correo = $this->input->post('correo_usuario');
 		$subject = "Registro de usuario";
 		$msg = '
 					<table cellpadding="0" cellspacing="0" class="wrapper"  width="100%">
@@ -222,7 +222,7 @@ class UsuarioController extends MY_Controller {
 							</tr>
 						</tbody>
 					</table>';
-		$this->enviarCorreo($correo,$msg,$subject);
+		$this->enviarCorreo($correo,$msg,$subject);*/
 		$res = $this->UsuarioModel->usuarioGuardar($_POST);
 		echo json_encode($res);die();
 	}

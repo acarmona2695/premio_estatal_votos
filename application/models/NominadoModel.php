@@ -22,14 +22,21 @@ class NominadoModel extends CI_Model {
         }
         $this->db->select("n.pk_nominado,
                             n.nombre_nominado,
+                            u.nombre_usuario,
                             asoc.descripcion AS asociacion,
                             m.descripcion AS modalidad,
                             DATE_FORMAT(n.fecha_creacion,'%d/%m%/%Y') AS fecha_creacion,
-                            DATE_FORMAT(n.fecha_modificacion,'%d/%m%/%Y %H:%i:%s') AS fecha_modificacion,
+                            DATE_FORMAT(n.fecha_modificacion,'%d/%m%/%Y %H:%i:%s') AS fecha_modificacion,CASE
+                                WHEN n.estatus = 0 THEN
+                                    'Inactivo'
+                                ELSE
+                                    'Activo'
+                            END AS estatus
                             ");
         $this->db->from("nominado AS n");
         $this->db->join("cat_asociacion AS asoc", "asoc.pk_asociacion = n.fk_asociacion");
         $this->db->join("cat_modalidad AS m", "m.pk_modalidad = n.fk_modalidad");
+        $this->db->join("usuario AS u", "u.pk_usuario = n.fk_usuario");
 
         if(isset($filtros['sidx'])){
             $this->db->order_by($filtros['sidx'] ,$filtros['sord']);
@@ -55,6 +62,7 @@ class NominadoModel extends CI_Model {
             $this->db->trans_begin();
             if($datos['pk_nominado'] == 0){
                 $datos['fecha_creacion'] = $this->db->query("SELECT DATE_FORMAT(NOW(),'%Y-%m-%d') AS f")->row()->f;;
+                $datos['fk_usuario'] = $this->session->userdata('pb_idUsuario');
                 $this->db->insert('nominado',$datos);
             }else{
                 //$datos['fecha_modificacion'] = $this->db->query("SELECT DATE_FORMAT(NOW(),'%Y-%m-%d') AS f")->row()->f;;
@@ -75,7 +83,8 @@ class NominadoModel extends CI_Model {
         $this->db->select("n.pk_nominado,
                             n.nombre_nominado,
                             n.fk_asociacion,
-                            n.fk_modalidad");
+                            n.fk_modalidad,
+                            n.estatus");
         $this->db->from("nominado AS n");
         $this->db->where("n.pk_nominado",$id);
         $query = $this->db->get();
