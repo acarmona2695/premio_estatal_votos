@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
-	const CLAVE_SECRET = "6LfivhQiAAAAAMMg-5CQL0UiJLV3GJljLD04ilTl";
-	const CLAVE_PUBLIC = "6LfivhQiAAAAANjuappTr-WLDOW7GIp0m_H_zVcS";
-	// const CLAVE_SECRET = "6Lfr5WggAAAAAMKXIdorcSSOT1uDlP8jUyRLtuyt";
-	// const CLAVE_PUBLIC = "6Lfr5WggAAAAAMp5mWNkShmhAOH7pKSyDrHMBCjt";
+	//const CLAVE_SECRET = "6LfivhQiAAAAAMMg-5CQL0UiJLV3GJljLD04ilTl";
+	//const CLAVE_PUBLIC = "6LfivhQiAAAAANjuappTr-WLDOW7GIp0m_H_zVcS";
+	 const CLAVE_SECRET = "6Lf4zUgiAAAAAMdBxhI3h7tfb4m6jeiK30tw10BQ";
+	 const CLAVE_PUBLIC = "6Lf4zUgiAAAAANes7E3WZBBcZzrg-5xzm1PGlWHC";
 	public function __construct(){
 		parent::__construct();
 		date_default_timezone_set('America/Mexico_City');

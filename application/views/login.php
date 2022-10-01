@@ -37,8 +37,8 @@
 	</div>
 </div>
 <?php include('common/footer.php');?>
-<script src='https://www.google.com/recaptcha/api.js?render=6LfivhQiAAAAANjuappTr-WLDOW7GIp0m_H_zVcS'></script>
-<!-- <script src='https://www.google.com/recaptcha/api.js?render=6LcEJ6QgAAAAAJsR1255Se6Rh_nQMNUH03iflSBr'></script> -->
+<script src='https://www.google.com/recaptcha/api.js?render=6Lf4zUgiAAAAANes7E3WZBBcZzrg-5xzm1PGlWHC'></script>
+<!-- <script src='https://www.google.com/recaptcha/api.js?render=6LcEJ6QgAAAAAJsR1255Se6Rh_nQMNUH03iflSBr'></script> publica -->
 <style>
 	.footer{
 		left:0 !important;
