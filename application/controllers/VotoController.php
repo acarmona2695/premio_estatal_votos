@@ -4,6 +4,7 @@ class VotoController extends MY_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('VotoModel');
+		$this->load->model('CatalogoModel');
 	}
 	public function index(){
 		if($this->session->userdata('pb_idPerfil') != 1){
@@ -11,6 +12,8 @@ class VotoController extends MY_Controller {
 		}
 		$datos = $this->funcionesBasicas('Voto');
 		$datos['menu'] = "voto";
+		$datos['DEPORTISTA'] = $this->CatalogoModel->listDeportista();
+		$datos['ENTRENADOR'] = $this->CatalogoModel->listEntrenador();
 		
 		$this->load->view('voto',$datos);
 	}
@@ -62,6 +65,23 @@ class VotoController extends MY_Controller {
 			$i++;
 		}
 		echo json_encode($response);die();
+	}
+
+	public function loadFormularioDeportista(){
+		$data['pk_voto'] = $this->input->post('pk_voto');
+		$data['INFO']['fk_nominado'] = '';
+		$data['INFO']['voto'] = '';
+		$data['DEPORTISTA'] = $this->CatalogoModel->listDeportista();
+		echo json_encode(array("error" => false,"HTML" => $this->load->view("loads/deportistaModal",$data,TRUE),"msg" => ''));die();
+	}
+
+
+	public function loadFormularioEntrenador(){
+		$data['pk_voto'] = $this->input->post('pk_voto');
+		$data['INFO']['fk_nominado'] = '';
+		$data['INFO']['voto'] = '';
+		$data['ENTRENADOR'] = $this->CatalogoModel->listEntrenador();
+		echo json_encode(array("error" => false,"HTML" => $this->load->view("loads/entrenadorModal",$data,TRUE),"msg" => ''));die();
 	}
 	
 	

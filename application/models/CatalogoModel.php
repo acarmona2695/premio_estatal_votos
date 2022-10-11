@@ -24,4 +24,28 @@ class CatalogoModel extends CI_Model {
 			return array();
 		}
     }
+
+    public function listDeportista(){
+        try{
+			$this->db->select("pk_nominado,nombre_nominado");
+			$this->db->from("nominado");
+			$this->db->where('fk_modalidad = 1');
+			$query = $this->db->get();
+		    return ($query->num_rows() > 0) ? $query->result_array() : array();
+		}catch(Exception $ex){
+			return array();
+		}
+    }
+
+    public function listEntrenador(){
+        try{
+			$this->db->select("pk_nominado,nombre_nominado");
+			$this->db->from("nominado");
+			$this->db->where('fk_modalidad = 2');
+			$query = $this->db->get();
+		    return ($query->num_rows() > 0) ? $query->result_array() : array();
+		}catch(Exception $ex){
+			return array();
+		}
+    }
 }

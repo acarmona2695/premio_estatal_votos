@@ -44,6 +44,15 @@
                 <span class="btn-label">Inicio</span>
                 </a>
               </li>
+
+              <li class="side-nav-item">
+                <a class="side-nav-link <?=(isset($menu) && $menu == "voto") ? "lol": ""?>"
+                 href="voto">
+                <i class="bi bi-briefcase"></i>
+                <span class="btn-label">Votos</span>
+                </a>
+              </li>
+
             <ul class="side-nav">
                  <?php if($idPerfil!=3){?>
               <li class="side-nav-item">

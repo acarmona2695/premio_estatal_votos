@@ -65,7 +65,7 @@
   </div>
 
 
-<!-- 
+
   <!-- Modal Deportista -->
   <div class="modal fade" id="modalInventario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="inventarioModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md">
@@ -78,8 +78,8 @@
         <div class="modal-footer">
           <button type="button" class="btn btnOrange" data-bs-dismiss="modal" id="bntFormClose" onclick="cerrarModal()">
             <span class="btn-label"><i class="bi bi-box-arrow-left"></i></span>&nbsp;&nbsp;Cerrar</button>
-          <!-- <button type="button" class="btn btn-primary"  id="enviar">
-            <span class="btn-label"><i class="bi bi-save"></i></span>&nbsp;&nbsp;Guardar</button> -->
+          <button type="button" class="btn btn-primary"  id="enviar">
+            <span class="btn-label"><i class="bi bi-save"></i></span>&nbsp;&nbsp;Votar</button>
         </div>
       </div>
     </div>

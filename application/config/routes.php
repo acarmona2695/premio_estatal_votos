@@ -113,7 +113,8 @@ $route['ajax/guardarContrasena'] = 'login/guardarContrasena';
 $route['voto'] = 'VotoController';
 $route['ajax/listadoVoto'] = 'VotoController/listVoto';
 $route['ajax/guardarVoto'] = 'VotoController/guardarVoto';
-//$route['ajax/cargarFormularioNominado'] = 'NominadoController/loadFormulario';
+$route['ajax/cargarFormularioDeportista'] = 'VotoController/loadFormularioDeportista';
+$route['ajax/cargarFormularioEntrenador'] = 'VotoController/loadFormularioEntrenador';
 
 
 $route['404_override'] = '';

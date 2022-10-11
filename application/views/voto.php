@@ -9,71 +9,224 @@
 .ui-jqgrid tr.jqgrow td {
   white-space: normal !important;
 }
-.chosen-container .chosen-results li.highlighted {
-  background-color: #073c77;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #073c77), color-stop(90%, #073c77));
-  background-image: -webkit-linear-gradient(#073c77 20%, #073c77 90%);
-  background-image: -moz-linear-gradient(#073c77 20%, #073c77 90%);
-  background-image: -o-linear-gradient(#073c77 20%, #073c77 90%);
-  background-image: linear-gradient(#073c77 20%, #073c77 90%);
-  color: #fff;
-}
 </style>
 <main class="col-md-12 ms-sm-auto col-lg-12 px-md-12">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Votación</h1>
+    <h1 class="h2">CATEGORIAS PREMIO ESTATAL <?php echo date('Y');?></h1>
   </div>
-  
-  <div style="clear:both;"></div>
+  <div>
+    <div class="container-fluid">
+      <button type="button" class="btn btn-labeled btn-primary"  id="btnDeportista" data-bs-toggle="modal" data-bs-target="#modalDeportista" data-id="0">
+    <span class="btn-label"><i class="bi bi-folder-plus"></i></span>&nbsp;&nbsp;DEPORTISTA</button>
+
+
+    <button type="button" class="btn btn-labeled btn-primary"  id="btnEntrenador" data-bs-toggle="modal" data-bs-target="#modalEntrenador" data-id="0">
+    <span class="btn-label"><i class="bi bi-folder-plus"></i></span>&nbsp;&nbsp;ENTRENADOR</button>
+    </div>
+    
+  </div>
   <br>
-  <div class="table-responsive">
-    <table class="table" id="grid"></table>
-    <div id="jqGridPager"></div>
+
+
+  <!-- Deportista -->
+  <div class="modal fade" id="modalDeportista" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deportistaModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deportistaModal"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cerrarModal()"></button>
+        </div>
+        <div class="modal-body" id="HTMLM"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btnOragen"  data-bs-dismiss="modal" id="bntFormClose" onclick="cerrarModal()">
+            <span class="btn-label"><i class="bi bi-box-arrow-left"></i></span>&nbsp;&nbsp;Cerrar</button>
+          <button type="button" class="btn btn-primary"  id="enviar">
+            <span class="btn-label"><i class="bi bi-save"></i></span>&nbsp;&nbsp;Guardar</button>
+        </div>
+      </div>
+    </div>
   </div>
-</main>
+
+
+    <!-- Entrenador -->
+  <div class="modal fade" id="modalEntrenador" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="entrenadorModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="entrenadorModal"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cerrarModal()"></button>
+        </div>
+        <div class="modal-body" id="HTMLMM"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btnOragen"  data-bs-dismiss="modal" id="bntFormClose" onclick="cerrarModal()">
+            <span class="btn-label"><i class="bi bi-box-arrow-left"></i></span>&nbsp;&nbsp;Cerrar</button>
+          <button type="button" class="btn btn-primary"  id="enviar">
+            <span class="btn-label"><i class="bi bi-save"></i></span>&nbsp;&nbsp;Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ </main>
 <?php include('common/footer.php');?>
-<style>
-.btnOragen {
+<style type="text/css">
+.btnOragen{
   background-color: orange;
   color: #fff;
 }
 </style>
 <script type="text/javascript">
-$("#grid").jqGrid({
-  url:'ajax/listadoVoto',
-  postData: {
-    csrf_directorio_token : function(){ return ($('#token').val() != "") ? $('#token').val() : "";}
-  },
-  datatype: 'json',mtype: 'POST',height:' 350px', styleUI : 'Bootstrap5',iconSet:  'Bootstrap5',
-  colNames:['Editar','Modalidad','Nominado','Asociación','Voto','Usuario','Fecha<br> creación'],
-  colModel:[
-  {name:'btnEditar',index:'btnEditar',width:'90px',resizable:false,sortable:false,align:'center',title:false},
-  {name:'fk_modalidad',index:'fk_modalidad',width:'110px',resizable:false,sortable:true,align:'center',title:false},
-  {name:'fk_nominado',index:'fk_nominado',width:'110px',resizable:false,sortable:true,align:'center',title:false},
-  {name:'fk_asociacion',index:'fk_asociacion',width:'110px',resizable:false,sortable:true,align:'center',title:false},
-  {name:'punto',index:'punto',width:'110px',resizable:false,sortable:true,align:'center',title:false},
-  {name:'fk_usuario',index:'fk_usuario',width:'110px',resizable:false,sortable:true,align:'center',title:false},
-  {name:'fecha_creacion',index:'fecha_creacion',width:'110px',resizable:false,sortable:true,align:'center',title:false},
-  ],
-  width: null,
-  shrinkToFit: false,
-  loadtext: 'Cargando...',
-  pager: '#jqGridPager',
-  rowNum:50,
-  altRows:false,
-  rowList:[50,100,500,1000],
-  viewrecords: true,
-  caption: 'Listado de Votaciones',
-  multiselect: false
-}).navGrid('#jqGridPager', { view: false, del: false, add: false, edit: false, refresh:true,search:false});
 function cerrarModal(){
   $('#form')[0].reset();
 }
+function guardarVoto() {
+  const fd = new FormData(document.getElementById("form"));
+  fd.append("csrf_directorio_token", $("#token").val());
+  $.ajax({
+    type: "POST",
+    dataType: "json",
+    cache: false,
+    contentType: false,
+    processData:false,
+    url: "ajax/guardarVoto",
+    data: fd,
+    beforeSend: function(){
+      $.blockUI({ css: {
+        border: 'none',
+        padding: '15px',
+        backgroundColor: '#000',
+        '-webkit-border-radius': '10px',
+        '-moz-border-radius': '10px',
+        opacity: .5,
+        color: '#fff' }, message: '<h1>Espera un momento...</h1>', baseZ: 2000
+      });
+    },
+    success: function(data){
+      $.unblockUI();
+      if(data.error){
+        $.toast({
+          heading: 'Error',
+          text: data.msg,
+          allowToastClose: true,
+          position: 'mid-center',
+          loader: true,
+          icon: 'error'
+        });
+        return false;
+      }
+      $('#grid').trigger( 'reloadGrid' );
+      cerrarModal();
+      $('#bntFormClose').click();
+      $.toast({
+        heading: 'Información',
+        text: data.msg,
+        position: 'mid-center',
+        allowToastClose: true,
+        icon: 'success',
+        loader: true,
+        loaderBg: '#9EC600'
+      });
+    },
+    error: function(){
+      $.unblockUI();
+    }
+  });
+}
+function cargarForm(id){
+  $.ajax({
+    type: "POST",
+    dataType: "json",
+    url: "ajax/cargarFormularioDeportista",
+    data:{csrf_directorio_token:$('#token').val(),pk_voto: id},
+    beforeSend: function(){
+      $("#HTMLM").html('<div class="text-center"><div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Cargando...</span></div><div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Cargando...</span></div><div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Cargando...</span></div>Cargando...</div>');
+      $.blockUI({ css: {
+        border: 'none',
+        padding: '15px',
+        backgroundColor: '#000',
+        '-webkit-border-radius': '10px',
+        '-moz-border-radius': '10px',
+        opacity: .5,
+        color: '#fff' }, message: '<h1>Espera un momento...</h1>', baseZ: 2000
+      });
+    },
+    success: function(data){
+      $.unblockUI();
+      if(data.error){
+        $.toast({
+          heading: 'Error',
+          text: data.msg,
+          allowToastClose: true,
+          position: 'mid-center',
+          loader: true,
+          icon: 'error'
+        });
+        return false;
+      }
+      $("#HTMLM").html(data.HTML);
+    },
+    error: function(){
+      $.unblockUI();
+    }
+  });
+}
 
-  $(document).on("click",".btnEditar", function(){
+function cargarFormE(id){
+  $.ajax({
+    type: "POST",
+    dataType: "json",
+    url: "ajax/cargarFormularioEntrenador",
+    data:{csrf_directorio_token:$('#token').val(),pk_voto: id},
+    beforeSend: function(){
+      $("#HTMLMM").html('<div class="text-center"><div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Cargando...</span></div><div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Cargando...</span></div><div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Cargando...</span></div>Cargando...</div>');
+      $.blockUI({ css: {
+        border: 'none',
+        padding: '15px',
+        backgroundColor: '#000',
+        '-webkit-border-radius': '10px',
+        '-moz-border-radius': '10px',
+        opacity: .5,
+        color: '#fff' }, message: '<h1>Espera un momento...</h1>', baseZ: 2000
+      });
+    },
+    success: function(data){
+      $.unblockUI();
+      if(data.error){
+        $.toast({
+          heading: 'Error',
+          text: data.msg,
+          allowToastClose: true,
+          position: 'mid-center',
+          loader: true,
+          icon: 'error'
+        });
+        return false;
+      }
+      $("#HTMLMM").html(data.HTML);
+    },
+    error: function(){
+      $.unblockUI();
+    }
+  });
+}
+$(document).ready(function() {
+  $("#btnDeportista").click( function(){
     const id = $(this).data("id");
-    $("#inventarioModal").html("Editar");
+    $("#deportistaModal").html("Votar categoria deportista");
     cargarForm(id);
   });
 
+  $("#btnEntrenador").click( function(){
+    const id = $(this).data("id");
+    $("#entrenadorModal").html("Votar categoria entrenador");
+    cargarFormE(id);
+  });
+
+
+  $('#enviar').click(function() {
+    guardarVoto();
+  });
+});
 </script>
