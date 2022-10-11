@@ -9,21 +9,58 @@
 .ui-jqgrid tr.jqgrow td {
   white-space: normal !important;
 }
+
+.contenedor{
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.btn-d{
+  font-size:24px;
+  background-color:#6495ED;
+  border:15px;
+  margin-right: 20px; 
+  width:250px;
+  height:100px;
+
+}
+
+.btn-e{
+  width:250px;
+  height:100px;
+  font-size:24px;
+  background-color:#6495ED;
+  border:15px;
+ margin-right: 20px; 
+}
+
+.btn-f{
+  width:250px;
+  height:100px;
+  font-size:24px;
+  background-color:#6495ED;
+  border:15px;
+
+}
 </style>
 <main class="col-md-12 ms-sm-auto col-lg-12 px-md-12">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">CATEGORIAS PREMIO ESTATAL <?php echo date('Y');?></h1>
   </div>
   <div>
-    <div class="container-fluid">
-      <button type="button" class="btn btn-labeled btn-primary"  id="btnDeportista" data-bs-toggle="modal" data-bs-target="#modalDeportista" data-id="0">
+    <div class="container">
+      <button type="button" class="btn btn-d"  id="btnDeportista" data-bs-toggle="modal" data-bs-target="#modalDeportista" data-id="0">
     <span class="btn-label"><i class="bi bi-folder-plus"></i></span>&nbsp;&nbsp;DEPORTISTA</button>
 
 
     <button type="button" class="btn btn-labeled btn-primary"  id="btnEntrenador" data-bs-toggle="modal" data-bs-target="#modalEntrenador" data-id="0">
     <span class="btn-label"><i class="bi bi-folder-plus"></i></span>&nbsp;&nbsp;ENTRENADOR</button>
+
+    <button type="button" class="btn btn-f"  id="btnFomento" data-bs-toggle="modal" data-bs-target="#modalFomento" data-id="0">
+    <span class="btn-label"><i class="bi bi-folder-plus"></i></span>&nbsp;&nbsp;FOMENTO</button>
     </div>
-    
   </div>
   <br>
 
@@ -57,6 +94,25 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cerrarModal()"></button>
         </div>
         <div class="modal-body" id="HTMLMM"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btnOragen"  data-bs-dismiss="modal" id="bntFormClose" onclick="cerrarModal()">
+            <span class="btn-label"><i class="bi bi-box-arrow-left"></i></span>&nbsp;&nbsp;Cerrar</button>
+          <button type="button" class="btn btn-primary"  id="enviar">
+            <span class="btn-label"><i class="bi bi-save"></i></span>&nbsp;&nbsp;Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Fomento -->
+  <div class="modal fade" id="modalFomento" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="fomentoModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="fomentoModal"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cerrarModal()"></button>
+        </div>
+        <div class="modal-body" id="HTMLMMM"></div>
         <div class="modal-footer">
           <button type="button" class="btn btnOragen"  data-bs-dismiss="modal" id="bntFormClose" onclick="cerrarModal()">
             <span class="btn-label"><i class="bi bi-box-arrow-left"></i></span>&nbsp;&nbsp;Cerrar</button>
@@ -211,6 +267,45 @@ function cargarFormE(id){
     }
   });
 }
+
+function cargarFormF(id){
+  $.ajax({
+    type: "POST",
+    dataType: "json",
+    url: "ajax/cargarFormularioFomento",
+    data:{csrf_directorio_token:$('#token').val(),pk_voto: id},
+    beforeSend: function(){
+      $("#HTMLMMM").html('<div class="text-center"><div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Cargando...</span></div><div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Cargando...</span></div><div class="spinner-grow text-primary" role="status"><span class="visually-hidden">Cargando...</span></div>Cargando...</div>');
+      $.blockUI({ css: {
+        border: 'none',
+        padding: '15px',
+        backgroundColor: '#000',
+        '-webkit-border-radius': '10px',
+        '-moz-border-radius': '10px',
+        opacity: .5,
+        color: '#fff' }, message: '<h1>Espera un momento...</h1>', baseZ: 2000
+      });
+    },
+    success: function(data){
+      $.unblockUI();
+      if(data.error){
+        $.toast({
+          heading: 'Error',
+          text: data.msg,
+          allowToastClose: true,
+          position: 'mid-center',
+          loader: true,
+          icon: 'error'
+        });
+        return false;
+      }
+      $("#HTMLMMM").html(data.HTML);
+    },
+    error: function(){
+      $.unblockUI();
+    }
+  });
+}
 $(document).ready(function() {
   $("#btnDeportista").click( function(){
     const id = $(this).data("id");
@@ -222,6 +317,12 @@ $(document).ready(function() {
     const id = $(this).data("id");
     $("#entrenadorModal").html("Votar categoria entrenador");
     cargarFormE(id);
+  });
+
+  $("#btnFomento").click( function(){
+    const id = $(this).data("id");
+    $("#fomentoModal").html("Votar categoria fomento");
+    cargarFormF(id);
   });
 
 

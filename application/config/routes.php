@@ -115,6 +115,7 @@ $route['ajax/listadoVoto'] = 'VotoController/listVoto';
 $route['ajax/guardarVoto'] = 'VotoController/guardarVoto';
 $route['ajax/cargarFormularioDeportista'] = 'VotoController/loadFormularioDeportista';
 $route['ajax/cargarFormularioEntrenador'] = 'VotoController/loadFormularioEntrenador';
+$route['ajax/cargarFormularioFomento'] = 'VotoController/loadFormularioFomento';
 
 
 $route['404_override'] = '';

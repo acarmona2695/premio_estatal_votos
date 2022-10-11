@@ -14,6 +14,7 @@ class VotoController extends MY_Controller {
 		$datos['menu'] = "voto";
 		$datos['DEPORTISTA'] = $this->CatalogoModel->listDeportista();
 		$datos['ENTRENADOR'] = $this->CatalogoModel->listEntrenador();
+		$datos['FOMENTO'] = $this->CatalogoModel->listFomento();
 		
 		$this->load->view('voto',$datos);
 	}
@@ -84,5 +85,12 @@ class VotoController extends MY_Controller {
 		echo json_encode(array("error" => false,"HTML" => $this->load->view("loads/entrenadorModal",$data,TRUE),"msg" => ''));die();
 	}
 	
+	public function loadFormularioFomento(){
+		$data['pk_voto'] = $this->input->post('pk_voto');
+		$data['INFO']['fk_nominado'] = '';
+		$data['INFO']['voto'] = '';
+		$data['FOMENTO'] = $this->CatalogoModel->listFomento();
+		echo json_encode(array("error" => false,"HTML" => $this->load->view("loads/fomentoModal",$data,TRUE),"msg" => ''));die();
+	}
 	
 }
