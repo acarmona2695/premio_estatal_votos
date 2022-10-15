@@ -110,6 +110,14 @@ $route['ajax/listadoNominado'] = 'NominadoController/listNominado';
 $route['ajax/guardarNominado'] = 'NominadoController/guardarNominado';
 $route['ajax/cargarFormularioNominado'] = 'NominadoController/loadFormulario';
 
+#RESULTADOS
+$route['rdeportista'] = 'ResultadodController';
+$route['edeportista'] = 'ResultadoeController';
+$route['fdeportista'] = 'ResultadofController';
+$route['ajax/listadoRdeportista'] = 'ResultadodController/listRdeportista';
+$route['ajax/listadoEdeportista'] = 'ResultadoeController/listEdeportista';
+$route['ajax/listadoFdeportista'] = 'ResultadofController/listFdeportista';
+
 
 
 #CONTRASEÑA

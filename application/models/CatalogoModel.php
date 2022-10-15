@@ -14,6 +14,18 @@ class CatalogoModel extends CI_Model {
 			return array();
 		}
     }
+
+    public function listModalidad(){
+        try{
+			$this->db->select("pk_modalidad,descripcion");
+			$this->db->from("cat_modalidad");
+			$query = $this->db->get();
+		    return ($query->num_rows() > 0) ? $query->result_array() : array();
+		}catch(Exception $ex){
+			return array();
+		}
+    }
+
     public function listPerfiles(){
         try{
 			$this->db->select("pk_perfil,descripcion");

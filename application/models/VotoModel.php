@@ -18,10 +18,11 @@ class VotoModel extends CI_Model {
             }
         }
         $this->db->select("v.pk_voto,
-                           u.nombre_usuario,
-                           n.nombre_nominado,
-                           m.descripcion,         
+                           u.nombre_usuario as usuario, 
+                           n.nombre_nominado as nominado,
+                           m.descripcion as modalidad,         
                            DATE_FORMAT(n.fecha_creacion,'%d/%m%/%Y') AS fecha_creacion,
+                           v.punto
         
          ");
 $this->db->from("voto AS v");
@@ -71,15 +72,6 @@ public function votoGuardar($datos){
         $res['msg'] = 'Intente de nuevo, más tarde';
         return $res;
     }
-}
+ }
 
-// public function obtenerRegistroPorId($id){
-    //     $this->db->select("v.pk_voto,
-    //                         v.nombre_nominado,
-    //                         v.fk_modalidad");              
-    //     $this->db->from("voto AS v");
-    //     $this->db->where("v.pk_voto",$id);
-    //     $query = $this->db->get();
-    //     return $query->row_array();
-    // }
 }

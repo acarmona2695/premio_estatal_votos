@@ -37,6 +37,7 @@
 <script type="text/javascript" src="<?=base_url()?>assets/js/jquery.alphanum.js"></script>
 <script src="<?=base_url()?>assets/js/app.js"></script>
 <script type="text/javascript" src="<?=base_url()?>assets/js/sweetalert2/sweetalert2.js"></script>
+<script type="text/javascript" src="<?=base_url()?>assets/js/confetti.browser.min.js"></script>
 <script type="text/javascript" src="<?=base_url()?>assets/js/chosen/chosen.jquery.min.js"></script>
 </body>
 </html>

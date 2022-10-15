@@ -1,30 +1,28 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class VotoController extends MY_Controller {
+class ResultadodController extends MY_Controller {
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('VotoModel');
+		$this->load->model('ResultadodModel');
 		$this->load->model('CatalogoModel');
 	}
 	public function index(){
 		if($this->session->userdata('pb_idPerfil') != 1){
 			redirect(base_url().'voto');
 		}
-		$datos = $this->funcionesBasicas('Voto');
-		$datos['menu'] = "voto";
+		$datos = $this->funcionesBasicas('Resultado Deportista');
+		$datos['menu'] = "rdeportista";
 		$datos['MODALIDAD'] = $this->CatalogoModel->listModalidad();
-		$this->load->view('voto',$datos);
+		$this->load->view('resultado-deportista',$datos);
 	}
-	public function listVoto(){
+	public function listRdeportista(){
 		if(!$this->session->userdata('pb_idUsuario')){
 			echo json_encode(array());
 			die();
 		}
 		$filtros = array('tipo' => 'TOTAL', 'start' => '0', 'limit' => '0');
-		// $filtros['LIKE'] = array("nombre" => trim($this->input->post("nombre")));
-		$filtros['WHERE'] = array("modalidad" => trim($this->input->post("modalidad")));
 							
-		$count = $this->VotoModel->VotoModelo($filtros);
+		$count = $this->ResultadodModel->ResultadodModelo($filtros);
 		$tmp = $this->input->post('page');
 		$page = (!empty($tmp))?$tmp:1;
 		$tmp = $this->input->post('rows');
@@ -32,11 +30,11 @@ class VotoController extends MY_Controller {
 		$start = $limit * $page - $limit;
 		$start = $filtros['start'] = ($start < 0) ? 0 : $start;
 		$filtros['tipo'] = 'PARCIAL';
-		$sidx = (isset($_POST['sidx']) && $_POST['sidx'] != "") ? $_POST['sidx'] : 'pk_voto';
+		$sidx = (isset($_POST['sidx']) && $_POST['sidx'] != "") ? $_POST['sidx'] : 'nominado';
 		$sord = (isset($_POST['sidx']) && $_POST['sidx'] != "") ? $_POST['sord'] : 'ASC';
 		$filtros['sidx'] = $sidx;
 		$filtros['sord'] = $sord;
-		$dataControl = $this->VotoModel->VotoModelo($filtros);
+		$dataControl = $this->ResultadodModel->ResultadodModelo($filtros);
 		if($count > 0){
 			$total_pages = ceil($count/$limit);
 		}else{
@@ -61,7 +59,7 @@ class VotoController extends MY_Controller {
 			     "usuario" => $row['usuario'],
 				 "nominado" => $row['nominado'],
 				 "modalidad" => $row['modalidad'],
-				 "fecha_creacion" => $row['fecha_creacion'],
+				 "total" => $row['total'],
 				  "punto" => $row['punto'],
 			);
 			$i++;

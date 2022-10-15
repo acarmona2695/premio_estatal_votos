@@ -15,6 +15,7 @@
       <label for="punto" class="col-form-label">Voto:</label>
       <input type="text" class="form-control" name="punto" id="punto" value="1" required readonly>
     </div>
+    <input type="text" class="form-control" name="fk_modalidad" value="3" id="fk_modalidad" hidden>
   </div>
 </form>
 <script type="text/javascript">

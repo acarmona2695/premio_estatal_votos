@@ -92,6 +92,36 @@
               </li>
 
                <?php if($idPerfil==1){?>
+                <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarConfig" aria-expanded="false" aria-controls="sidebarConfig"
+                class="side-nav-link <?=(in_array($menu,array("rentrenador","rdeportista","rfomento"))) ? "lol2": ""?>">
+                <i class="bi bi-card-list"></i>
+                <span> Resultados</span>
+            </a>
+            <div class="collapse" id="sidebarConfig" >
+                <ul class="side-nav">
+                    <li>
+                        <a href="rdeportista"
+                        class="side-nav-link <?=(isset($menu) && $menu == "rdeportista") ? "lol": ""?>">
+                        <i class="bi bi-file-lock"></i>
+                        <span class="btn-label">Deportista</span></a>
+                    </li>
+                    <li>
+                        <a href="rentrenador"
+                        class="side-nav-link <?=(isset($menu) && $menu == "rentrenador") ? "lol": ""?>">
+                        <i class="bi bi-people"></i>
+                        <span class="btn-label">Entrenador</span></a>
+                    </li>
+                    <li>
+                        <a href="rfomento"
+                        class="side-nav-link <?=(isset($menu) && $menu == "rfomento") ? "lol": ""?>">
+                        <i class="bi bi-card-list"></i>
+                        <span class="btn-label">Fomento</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarConfig" aria-expanded="false" aria-controls="sidebarConfig"
                 class="side-nav-link <?=(in_array($menu,array("usuario","perfil","estatus"))) ? "lol2": ""?>">

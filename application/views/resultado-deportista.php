@@ -1,4 +1,4 @@
-<?php include('common/header.php');?>
+<?php include('common/header2.php');?>
 <style type="text/css">
 .ui-jqgrid .ui-jqgrid-htable .ui-th-div {
   height: 30px !important;
@@ -21,43 +21,9 @@
 </style>
 <main class="col-md-12 ms-sm-auto col-lg-12 px-md-12">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Monitoreo de votos</h1>
-  </div>
-  
-  <!--Acordion para filtrar resultado-->
-  <div class="accordion accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingOne" style="background-color: #073c77;">
-        <button class="accordion-button collapsed buscador" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-          Buscador
-        </button>
-      </h2>
-      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-        <div class="card-body">
-          <div class="row">         
-            <div class="col-sm-6 col-md-6 col-lg-3">
-              <label for="estatusf">Modalidad</label>
-              <select class="form-select chosen-select" aria-label="modalidadf" name="modalidadf" id="modalidadf">
-                <option value="">Seleccionar Modalidad...</option>
-                <?php if(count($MODALIDAD) > 0){
-                foreach($MODALIDAD as $k => $row){?>
-                <option value="<?=$row['pk_modalidad']?>"><?=$row['descripcion']?></option>
-                <?php }
-                }?>
-              </select>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-3">
-              <label>&nbsp;</label>
-              <button type="button" class="btn btn-primary" id="btnBuscar" style="margin-top:21px;"><i class="bi bi-search"></i>Buscar</button>
-              <button type="button" class="btn btn-primary" id="btnLimpiar" style="margin-top:21px;"><i class="bi bi-arrow-clockwise"></i>Limpiar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h1 class="h2">Resultados categoria deportista</h1>
   </div>
   <div style="clear:both;"></div>
-  <br>
   <div class="table-responsive">
     <table class="table" id="grid"></table>
     <div id="jqGridPager"></div>
@@ -72,18 +38,18 @@
 </style>
 <script type="text/javascript">
 $("#grid").jqGrid({
-  url:'ajax/listadoVoto',
+  url:'ajax/listadoRdeportista',
   postData: {csrf_directorio_token : function(){ return ($('#token').val() != "") ? $('#token').val() : "";},
     modalidad : function(){ return ($.trim($('#modalidadf').val()) != "") ? $.trim($('#modalidadf').val()) : "";},
   },
   datatype: 'json',mtype: 'POST',height:'350px', styleUI : 'Bootstrap5',iconSet:  'Bootstrap5',
-  colNames:['Nominado','Modalidad','Puntos','Fecha<br> creación','Usuario'],
+  colNames:['Nominado','Modalidad','Puntos','Total','Usuario'],
   colModel:[
 
   {name:'nominado',index:'nominado',width:'220px',resizable:false,sortable:true,align:'left',title:false},
   {name:'modalidad',index:'modalidad',width:'220px',resizable:false,sortable:true,align:'left',title:false},
   {name:'punto',index:'punto',width:'80px',resizable:false,sortable:true,align:'center',title:false},
-  {name:'fecha_creacion',index:'fecha_creacion',width:'95px',resizable:false,sortable:true,align:'left',title:false},
+  {name:'total',index:'total',width:'95px',resizable:false,sortable:true,align:'left',title:false},
   {name:'usuario',index:'usuario',width:'120px',resizable:false,sortable:true,align:'left',title:false},
   ],
   loadComplete: function(data) {
@@ -120,22 +86,54 @@ $("#grid").jqGrid({
 
 
 $(document).ready(function(){
-  $('.chosen-select').chosen({width:"200px", no_results_text: "No hay datos que coincidan con la búsqueda"});
-  //////////////////////////////////////////
-  $(".inputFilter").keydown(function (e) {
-    if(e.keyCode == 13){
-      $('#grid').trigger( 'reloadGrid' );
-    }
+  var duration = 15 * 3000;
+var animationEnd = Date.now() + duration;
+var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+function randomInRange(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+var interval = setInterval(function() {
+  var timeLeft = animationEnd - Date.now();
+
+  if (timeLeft <= 0) {
+    return clearInterval(interval);
+  }
+
+  var particleCount = 50 * (timeLeft / duration);
+  // since particles fall down, start a bit higher than random
+  confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+  confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+}, 250);
+
+var end = Date.now() + (15 * 3000);
+
+// go Buckeyes!
+var colors = ['#bb0000', '#ffffff'];
+
+(function frame() {
+  confetti({
+    particleCount: 2,
+    angle: 60,
+    spread: 55,
+    origin: { x: 0 },
+    colors: colors
+  });
+  confetti({
+    particleCount: 2,
+    angle: 120,
+    spread: 55,
+    origin: { x: 1 },
+    colors: colors
   });
 
-  $("#btnBuscar").click( function(){
-    $('#grid').trigger( 'reloadGrid' );
-  });
+  if (Date.now() < end) {
+    requestAnimationFrame(frame);
+  }
+}());
 
-  $("#btnLimpiar").click( function(){
-    $("#modalidadf").val('').trigger('chosen:updated');
-    $('#grid').trigger( 'reloadGrid' );
-  });
+
 
   
 });

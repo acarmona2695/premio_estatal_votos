@@ -71,6 +71,7 @@ class InicioModel extends CI_Model {
         try {
             $this->db->trans_begin();
             if($datos['pk_voto'] == 0){
+
                 $datos['fecha_creacion'] = $this->db->query("SELECT DATE_FORMAT(NOW(),'%Y-%m-%d') AS f")->row()->f;;
                 $datos['fk_usuario'] = $this->session->userdata('pb_idUsuario');
                 $this->db->insert('voto',$datos);
@@ -95,6 +96,7 @@ class InicioModel extends CI_Model {
         try {
             $this->db->trans_begin();
             if($datos['pk_voto'] == 0){
+
                 $datos['fecha_creacion'] = $this->db->query("SELECT DATE_FORMAT(NOW(),'%Y-%m-%d') AS f")->row()->f;;
                 $datos['fk_usuario'] = $this->session->userdata('pb_idUsuario');
                 $this->db->insert('voto',$datos);

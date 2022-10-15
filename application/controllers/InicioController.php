@@ -72,14 +72,17 @@ class InicioController extends MY_Controller {
 		if(!$this->session->userdata('pb_idUsuario')){
 			echo json_encode(array("error" => true,"msg" => 'Favor de actualizar la página, su sesión finalizó.'));die();
 		}
+
 		$fk_nominado = $this->input->post('fk_nominado');
 		if(trim($fk_nominado) == ""){
-			echo json_encode(array("error" => true,"msg" => 'El campo Deportista es obligatorio'));die();
+			echo json_encode(array("error" => true,"msg" => 'El campo Nominado es obligatorio'));die();
 		}
 		$punto = $this->input->post('punto');
 		if(trim($punto) == ""){
 			echo json_encode(array("error" => true,"msg" => ''));die();
 		}
+
+		$fk_modalidad = $this->input->post('fk_modalidad');
 		
 		$res = $this->InicioModel->votoGuardarDeportista($_POST);
 		echo json_encode($res);die();
@@ -89,32 +92,37 @@ class InicioController extends MY_Controller {
 		if(!$this->session->userdata('pb_idUsuario')){
 			echo json_encode(array("error" => true,"msg" => 'Favor de actualizar la página, su sesión finalizó.'));die();
 		}
+
 		$fk_nominado = $this->input->post('fk_nominado');
 		if(trim($fk_nominado) == ""){
-			echo json_encode(array("error" => true,"msg" => 'El campo Entrenador es obligatorio'));die();
+			echo json_encode(array("error" => true,"msg" => 'El campo Nominado es obligatorio'));die();
 		}
 		$punto = $this->input->post('punto');
 		if(trim($punto) == ""){
 			echo json_encode(array("error" => true,"msg" => ''));die();
 		}
+
+		$fk_modalidad = $this->input->post('fk_modalidad');
 		
 		$res = $this->InicioModel->votoGuardarEntrenador($_POST);
 		echo json_encode($res);die();
 	}
 
-
 	public function guardarVotoFomento(){
 		if(!$this->session->userdata('pb_idUsuario')){
 			echo json_encode(array("error" => true,"msg" => 'Favor de actualizar la página, su sesión finalizó.'));die();
 		}
+
 		$fk_nominado = $this->input->post('fk_nominado');
 		if(trim($fk_nominado) == ""){
-			echo json_encode(array("error" => true,"msg" => 'El campo Fomento es obligatorio'));die();
+			echo json_encode(array("error" => true,"msg" => 'El campo Nominado es obligatorio'));die();
 		}
 		$punto = $this->input->post('punto');
 		if(trim($punto) == ""){
 			echo json_encode(array("error" => true,"msg" => ''));die();
 		}
+
+		$fk_modalidad = $this->input->post('fk_modalidad');
 		
 		$res = $this->InicioModel->votoGuardarFomento($_POST);
 		echo json_encode($res);die();
@@ -127,7 +135,6 @@ class InicioController extends MY_Controller {
 		$data['DEPORTISTA'] = $this->CatalogoModel->listDeportista();
 		echo json_encode(array("error" => false,"HTML" => $this->load->view("loads/deportistaModal",$data,TRUE),"msg" => ''));die();
 	}
-
 
 	public function loadFormularioEntrenador(){
 		$data['pk_voto'] = $this->input->post('pk_voto');
